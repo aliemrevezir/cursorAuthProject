@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-form">
+            <h2>Welcome to Dashboard</h2>
+            <button id="signoutBtn">Sign Out</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signoutBtn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/signout', {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    window.location.href = '/signin.html';
+                } else {
+                    alert('Failed to sign out');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during sign out');
+            }
+        });
+    </script>
+</body>
+</html>
